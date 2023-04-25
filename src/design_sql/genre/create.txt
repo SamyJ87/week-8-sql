@@ -1,0 +1,64 @@
+What do we want to achieve?
+
+Allow user to add a genre to a database
+
+What do we want a user to be able to do?
+
+1. Input genre name
+4. Create genre with given data
+5. Have confirmation that the genre has been created.
+
+Request type
+
+POST
+
+Endpoint/route
+
+/genres/addgenre
+
+Associated Function
+
+addGenre
+
+Data Requirements
+
+DB
+
+Book:
+    id: string
+    genre: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        genre: string
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 201  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        genre:
+            type: object
+            properties:
+                genre: string
+                id: number
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

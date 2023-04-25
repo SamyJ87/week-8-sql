@@ -1,0 +1,64 @@
+What do we want to achieve?
+
+Allow user to add an author to a database
+
+What do we want a user to be able to do?
+
+1. Input author name
+4. Create author with given data
+5. Have confirmation that the author has been created.
+
+Request type
+
+POST
+
+Endpoint/route
+
+/authors/addauthor
+
+Associated Function
+
+addAuthor
+
+Data Requirements
+
+DB
+
+Author:
+    id: number
+    authorName: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        authorName: string
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 201  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        author:
+            type: object
+            properties:
+                id: number
+                author: string
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

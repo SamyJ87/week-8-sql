@@ -1,0 +1,134 @@
+!!!!!! One of two designs !!!!!
+==============================================================
+
+What do we want to achieve?
+
+Allow user to delete a book
+
+What do we want a user to be able to do?
+
+1. Input book title
+2. Delete the book
+3. Receive confirmation that the book has bee deleted
+
+Request type
+
+DELETE
+
+Endpoint/route
+
+/books/deletebook
+
+Associated Function
+
+deleteBook
+
+Data Requirements
+
+DB
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        title: string   
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 201  
+    properties:
+        message:
+            type: string
+            example: 'successfully deleted'
+        result:
+            type: number
+            example: 1
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error
+
+!!!!!! Two of two designs !!!!!
+==============================================================
+
+What do we want to achieve?
+
+Allow user to delete all books
+
+What do we want a user to be able to do?
+
+1. Send a request to delete all books
+2. Receive confirmation that the books has bee deleted
+
+Endpoint/route
+
+/books/deleteallbooks
+
+Request type
+
+DELETE
+
+Associated Function
+
+deleteAllBooks
+
+Data Requirements
+
+DB
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        title: string   
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 202 
+    properties:
+        message:
+            type: string
+            example: 'successfully deleted'
+        result:
+            type: number
+            example: 0
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

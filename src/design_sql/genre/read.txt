@@ -1,0 +1,68 @@
+What do we want to achieve?
+
+Allow user to get all books associated with a particular genre
+
+What do we want a user to be able to do?
+
+1. Search for a genre
+2. Receive confirmation and retrieve all books in a given genre
+
+Request type
+
+GET
+
+Endpoint/route
+
+/genres/getbooksbygenre/:genre
+
+Associated Function
+
+getAllBooks
+
+Data Requirements
+
+DB
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: N/A
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 200  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        booksByGenre:
+            type: array
+            items:
+                book:
+                    properties:
+                        id: number
+                        title: string   
+                        author: string
+                        genre: string 
+                        AuthorId: number
+                        GenreId: number
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

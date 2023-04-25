@@ -1,0 +1,72 @@
+What do we want to achieve?
+
+Allow user to add a book to a database
+
+What do we want a user to be able to do?
+
+1. Input book title
+2. Input book author
+3. Input book genre
+4. Create book with given data
+5. Have confirmation that the book has been created.
+
+Request type
+
+POST
+
+Endpoint/route
+
+/books/addbook
+
+Associated Function
+
+addBook
+
+Data Requirements
+
+DB
+
+Book:
+    id: string
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        title: string   
+        author: string  
+        genre: string
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 201  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        newBook:
+            type: object
+            properties:
+                title: string
+                author: string  
+                genre: string
+                id: string
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

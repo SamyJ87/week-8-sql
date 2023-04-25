@@ -1,0 +1,142 @@
+!!!!!! One of two designs !!!!!
+==============================================================
+
+What do we want to achieve?
+
+Allow user to get the details for all books
+
+What do we want a user to be able to do?
+
+1. Get a list of all the books and their data
+
+Request type
+
+GET
+
+Endpoint/route
+
+/books/getallbooks
+
+Associated Function
+
+getAllBooksByGenre
+
+Data Requirements
+
+DB
+
+Genre:
+    id: number
+    genre: string
+
+Book:
+    id: number
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: N/A
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 200  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        books:
+            type: array
+            items:
+                book:
+                    properties:
+                        id: integer 
+                        title: string   
+                        author: string
+                        genre: string 
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error
+
+
+!!!!!! Two of two designs !!!!!
+==============================================================
+
+What do we want to achieve?
+
+Allow user to get the details for a single book
+
+What do we want a user to be able to do?
+
+1. Get a single book by book title
+
+Request type
+
+GET
+
+Endpoint/route
+
+/books/getbook/:title
+
+Associated Function
+
+getSingleBookByTitle
+
+Data Requirements
+
+DB
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: N/A
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 200  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        book:
+            type: object
+            properties:
+                    id: integer 
+                    title: string   
+                    author: string
+                    genre: string    
+            
+                
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

@@ -1,0 +1,79 @@
+What do we want to achieve?
+
+Allow user to get an author and all books associated with said author
+
+What do we want a user to be able to do?
+
+1. Input an author name in address bar 
+2. Receive author details and books in single object
+
+
+Endpoint/route
+
+/authors/getauthorandbooks/:authorname
+
+Request type
+
+GET
+
+Associated Function
+
+getAuthorAndBooks
+
+Data Requirements
+
+DB
+
+Author:
+    id: integer
+    authorName: string 
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+    AuthorId: number
+
+Request
+
+Body: N/A
+
+Response
+
+SuccessResponse:
+    type: object  
+    status: 200  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        author:
+            type: object
+            properties:
+                id:
+                    type: number
+                    example: 1
+                books:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            id: integer 
+                            title: string   
+                            author: string
+                            genre: string 
+                            AuthorId: number
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error

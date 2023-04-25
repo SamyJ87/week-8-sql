@@ -1,0 +1,68 @@
+What do we want to achieve?
+
+Allow user to change any book field belonging to the book,
+searching by title
+
+What do we want a user to be able to do?
+
+1. Input a book title
+2. Input a field the user wishes to update
+3. Input a value the user wishes to update
+4. Update the book
+5. Receive confirmation of a successful update
+
+Request type
+
+PUT
+
+Endpoint/route
+
+/books/updatebook
+
+Associated Function
+
+updateBook
+
+Data Requirements
+
+DB
+
+Book:
+    id: integer 
+    title: string   
+    author: string
+    genre: string
+
+Request
+
+Body: 
+    type: object
+    properties:
+        title: string   
+        newAuthor: string  
+
+SuccessResponse: 
+    type: object  
+    status: 201  
+    properties:
+        message:
+            type: string
+            example: 'success'
+        updateResult:
+            type: array
+            properties:
+                type: number
+                example: 1      // Here, the number is the number of books updated
+
+ErrorResponse:
+    type: object
+    status: 501
+    properties:
+        errorMessage: 
+            type: string
+            example: "Validation error" - access using error.message
+        error:
+            type: object
+            description: the error
+            properties:
+                error: error
